@@ -1,11 +1,11 @@
+require('dotenv').config();
 const {ChatClient} = require('@kararty/dank-twitch-irc')
 const fs = require('node:fs');
 const path = require('node:path');
 
 const client = new ChatClient({
 	username:'bittymoth',
-	password:'7c5ajupq1vzzwh756cqgqvvwt553af',
-	// password:'a7riysc4qfugf7zmc66gmizkvz6oov',
+	password:process.env.OAUTH,
 	rateLimits:'default'
 })
 client.cmd = new Map();
