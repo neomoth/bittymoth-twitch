@@ -59,3 +59,4 @@ function genCommands(){
 client.connect();
 client.join('neomothdev');
 client.join('bittymoth');
+client.join('weest');
