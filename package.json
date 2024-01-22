@@ -1,0 +1,16 @@
+{
+  "name": "bittymoth",
+  "version": "1.0.0",
+  "description": "bot for making chat pick a random number",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "neomoth",
+  "license": "ISC",
+  "dependencies": {
+    "@kararty/dank-twitch-irc": "^6.2.0",
+    "dank-twitch-irc": "^4.3.0",
+    "tmi.js": "^1.8.5"
+  }
+}
