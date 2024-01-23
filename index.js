@@ -18,7 +18,6 @@ client.on('ready', ()=>{
 client.on('PRIVMSG', async (msg)=>{
 	if(msg.senderUsername==='bittymoth')return;
 	if(!msg.messageText.startsWith(']'))return;
-	console.log(msg);
 	const args = msg.messageText.slice(1).split(' ');
 	const command = args[0];
 	let cmd = client.cmd.get(command);
@@ -27,8 +26,6 @@ client.on('PRIVMSG', async (msg)=>{
 		// console.log(client.cmd.values())
 		client.cmd.forEach(c=>{
 			for(const alias of c.data.aliases){
-				console.log(alias);
-				console.log(c.data.aliases);
 				if(command===alias) {
 					realCmd = c;
 					break;
