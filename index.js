@@ -2,6 +2,7 @@ require('dotenv').config();
 const axios = require('axios');
 const {ChatClient} = require('@kararty/dank-twitch-irc')
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 
 const client = new ChatClient({
@@ -56,7 +57,7 @@ function genCommands(){
 
 client.refresh = refreshToken;
 
-client.refreshInterval = setInterval(refreshToken,10*60*5);
+client.refreshInterval = setInterval(refreshToken,10*60*5000);
 
 async function refreshToken() {
 	await axios.post('https://id.twitch.tv/oauth2/token', `grant_type=refresh_token&refresh_token=${encodeURI(process.env.REFRESH)}&client_id=22j725gh2t8posp2elujajz0qjiueg&client_secret=${process.env.CLIENT_SECRET}`, {
@@ -65,11 +66,20 @@ async function refreshToken() {
 		},
 	}).then((resp) => {
 		console.log(`[INFO]: Got new token: ${resp.data.access_token}. Got new refresh token: ${resp.data.refresh_token}`);
-		process.env.OAUTH = resp.data.access_token;
-		process.env.REFRESH = resp.data.refresh_token;
+		setEnvValue('OAUTH', resp.data.access_token);
+		setEnvValue('REFRESH', resp.data.refresh_token);
 	}).catch((err) => {
 		console.error(`[ERROR]: An error occurred during the token refresh: ${err.toString()}`);
 	});
+}
+
+function setEnvValue(key, value) {
+	const ENV_VARS = fs.readFileSync("./.env", "utf8").split(os.EOL);
+	const target = ENV_VARS.indexOf(ENV_VARS.find((line) => {
+		return line.match(new RegExp(key));
+	}));
+	ENV_VARS.splice(target, 1, `${key}=${value}`);
+	fs.writeFileSync("./.env", ENV_VARS.join(os.EOL));
 }
 
 client.connect();
