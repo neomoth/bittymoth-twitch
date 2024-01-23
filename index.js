@@ -64,6 +64,7 @@ async function refreshToken() {
 			'Content-Type': 'application/x-www-form-urlencoded',
 		},
 	}).then((resp) => {
+		console.log(`[INFO]: Got new token: ${resp.data.access_token}. Got new refresh token: ${resp.data.refresh_token}`);
 		process.env.OAUTH = resp.data.access_token;
 		process.env.REFRESH = resp.data.refresh_token;
 	}).catch((err) => {

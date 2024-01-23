@@ -6,5 +6,6 @@ module.exports = {
 	},async run(client,e){
 		if(e.senderUsername!=='neomothdev') return;
 		client.refresh();
+		console.log(`[INFO]: regenerated token at ${new Date.now().toLocaleString()}`);
 	}
 }
