@@ -6,6 +6,16 @@ module.exports = {
 		aliases:['ld']
 	},async run(client, e, args){
 		if(e.senderUsername!=='neomothdev')return;
-		global.lockdown=true;
+		if(args[1]===null||args[1]===' '||(args[1]!=='false'&&args[1]!=='true')){
+			global.lockdown=!global.lockdown;
+			return;
+		}
+		if(args[1]==='false'){
+			global.lockdown=false;
+			return;
+		}
+		if(args[1]==='true'){
+			global.lockdown=true;
+		}
 	}
 }
