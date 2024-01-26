@@ -1,4 +1,5 @@
 require('dotenv').config();
+const global = require('globalvars');
 const axios = require('axios');
 const {ChatClient} = require('@kararty/dank-twitch-irc')
 const fs = require('node:fs');
@@ -18,6 +19,7 @@ client.on('ready', ()=>{
 });
 
 client.on('PRIVMSG', async (msg)=>{
+	if(global.lockdown&&msg.senderUsername!=='neomothdev')return; // return immediately if not dev
 	if(msg.senderUsername==='bittymoth')return;
 	if(!msg.messageText.startsWith(']'))return;
 	const args = msg.messageText.slice(1).split(' ');
