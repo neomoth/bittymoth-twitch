@@ -1,5 +1,5 @@
 require('dotenv').config();
-const global = require('globalvars');
+const global = require('./globalvars');
 const axios = require('axios');
 const {ChatClient} = require('@kararty/dank-twitch-irc')
 const fs = require('node:fs');
