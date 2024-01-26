@@ -1,4 +1,4 @@
-const global = require('globalvars');
+const global = require('../globalvars');
 module.exports = {
 	data:{
 		name:'lockdown',
