@@ -35,10 +35,10 @@ client.on('PRIVMSG', async (msg)=>{
 			}
 		})
 		if(!realCmd) return;
-		realCmd.run(client,msg);
+		realCmd.run(client,msg, args);
 		return;
 	}
-	cmd.run(client, msg);
+	cmd.run(client, msg, args);
 });
 
 function genCommands(){

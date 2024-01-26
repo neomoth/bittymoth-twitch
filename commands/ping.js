@@ -4,7 +4,7 @@ module.exports ={
 		description:'Test bot response time',
 		aliases:['p']
 	},
-	async run(client, e){
+	async run(client, e, args){
 		client.privmsg(e.channelName, `Pong!`);
 	}
 }

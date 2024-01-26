@@ -47,7 +47,7 @@ const quotes=[
 	"/me I'm over here stroking my dick I got lotion on my dick right now I'm just stroking my shit I'm horny as fuck man I'm a freak man like",
 	"/me 1/300 chance to get this message SUBLIME",
 	"/me Thank god it don't got red 21 in it. 21. What's 9 + 10? 21. Thank god it don't got that in it. What's 9 + 10? 21. Thank god it don't got that in it, man. 21- You stupid. No I'm not. What's 9 + 10? 21. Thank god it don't got red 21. You stupid. No I'm not. What's 9 + 10? 21. Man, you stupid. Tha- tha thank god it don't got that in it. Thank god It got red 21. ",
-	"/me nonverbal",
+	"/me nonverbal ALERT soyPoint",
 	// "/me ",
 	// "/me ",
 	// "/me ",
@@ -306,7 +306,9 @@ module.exports ={
 		description:'Spit out one of many, MANY random messages.',
 		aliases:['rq']
 	},
-	async run(client, e){
-		client.privmsg(e.channelName, quotes[Math.floor(Math.random()*quotes.length)]);
+	async run(client, e,args){
+		let quote = quotes[Math.floor(Math.random()*quotes.length)];
+		quote = quote.replace('`name`', e.senderUsername);
+		client.privmsg(e.channelName, quote);
 	}
 }
